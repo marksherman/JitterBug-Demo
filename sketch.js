@@ -13,16 +13,28 @@ function makeBug(speed, color) {
   return bug;
 }
 
-var bug;
+var bugs = [];
 
 function setup() {
   createCanvas(400, 400);
   background(220);
+
   noStroke();
 
-  bug = makeBug(2, "purple");
+  for(var i = 0; i < 81; i++){
+    var newColor = makeColor();
+    var newBug = makeBug(2, newColor);
+    bugs.push(newBug);
+  }
 }
 
 function draw() {
-  bug.move();
+  for(var i = 0; i < bugs.length; i++){
+    bugs[i].move();
+  }
+}
+
+// generates a random color
+function makeColor() {
+  return color(random(0, 255), random(0, 255), random(0, 255));
 }
